@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class Lander : MonoBehaviour
 {
@@ -24,5 +25,42 @@ public class Lander : MonoBehaviour
             float turnSpeed = -5;
             landerRigidbody2D.AddTorque(turnSpeed);
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision2D) {
+        if (!collision2D.gameObject.TryGetComponent(out LandingPad landingPad)) { // TryGetComponent non sarà vera a meno che il gameObject ha come componente il landingPad
+            Debug.Log("Sei finito sul terreno!");
+            return;
+        }
+
+        float limiteAtterraggioMorbido = 4f;
+        float velocitàRelativaMagnitude = collision2D.relativeVelocity.magnitude;
+        if (velocitàRelativaMagnitude > limiteAtterraggioMorbido) {
+            Debug.Log("Atterraggio troppo duro"); // Atterraggio troppo rapido
+            return;
+        }
+
+        float dotVector = Vector2.Dot(Vector2.up, transform.up);
+        float minAngoloDot = .90f;
+        if (dotVector < minAngoloDot) {
+            Debug.Log("Atterraggio troppo ripido!"); // Atterraggio con angolo troppo ripido
+            return;
+        }
+        
+        Debug.Log("Atterraggio eseguito con successo!");
+
+        float punteggioMassimoAngoloAtterraggio = 100f;
+        float punteggioDotVettoreMoltiplicatore = 10f; // dptVector prende valori del tipo 0.9985849855, ecco perché il punteggio va bene
+        float punteggioAngoloAtterraggio = punteggioMassimoAngoloAtterraggio - Mathf.Abs(dotVector - 1) * punteggioDotVettoreMoltiplicatore * punteggioMassimoAngoloAtterraggio;
+
+        float punteggioMassimoVelocitàAtterraggio = 100f; // guardare la condizione dell'atterraggio troppo duro
+        float punteggioVelocitàAtterraggio = (limiteAtterraggioMorbido - velocitàRelativaMagnitude) * punteggioMassimoVelocitàAtterraggio;
+
+        Debug.Log("Punteggio angolo: " + punteggioAngoloAtterraggio);
+        Debug.Log("Punteggio velocità " + punteggioVelocitàAtterraggio);
+
+        int score = Mathf.RoundToInt(punteggioAngoloAtterraggio + punteggioVelocitàAtterraggio) * landingPad.ScoreMultiplier();
+
+        Debug.Log("Punteggio: " + score);
     }
 }
