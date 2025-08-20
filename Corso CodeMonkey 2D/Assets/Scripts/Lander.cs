@@ -1,9 +1,14 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SocialPlatforms.Impl;
-
 public class Lander : MonoBehaviour
 {
+    public event EventHandler OnUpForce;
+    public event EventHandler OnRightForce;
+    public event EventHandler OnLeftForce;
+    public event EventHandler OnBeforeForce;
+
     private Rigidbody2D landerRigidbody2D;
 
     private void Awake() {
@@ -13,17 +18,21 @@ public class Lander : MonoBehaviour
     // Se usiamo Fixed, non abbiamo bisogno di inserire Time.deltaTime per risolvere i problemi riguardo i frame rate
     private void FixedUpdate() 
     {
+        OnBeforeForce?.Invoke(this, EventArgs.Empty); // evento che si attiva ad ogni singolo frame (a meno che un altro evento sia già attivo, ad esempio OnUpForce)
         if (Keyboard.current.upArrowKey.isPressed) { // Immagazziniamo i numeri in variabili per scrivere un codice più comprensibile e chiaro. Scrivere solo i numeri senza variabili diventano "Magic Numbers", numeri che non sono subito chiari su che cosa servono.
             float force = 15f;
             landerRigidbody2D.AddForce(force * transform.up); // Utilizziamo transform(componente) perché, guardando la navicella dalla scena attraverso il move tool, quando la navicella ruota, la sua freccia y cambia in base alla direzione della navicella.
+            OnUpForce?.Invoke(this, EventArgs.Empty); // Studiare meglio gli eventi. "this" si riferisce all'oggetto in questa condizione, che in questo caso è un evento che si attiva quando schiacciamo la freccetta in alto; stesso caso per sinistra e destra.
         }
         if (Keyboard.current.leftArrowKey.isPressed) {
             float turnSpeed = +5;
             landerRigidbody2D.AddTorque(turnSpeed);
+            OnLeftForce?.Invoke(this, EventArgs.Empty);
         }
         if (Keyboard.current.rightArrowKey.isPressed) {
             float turnSpeed = -5;
             landerRigidbody2D.AddTorque(turnSpeed);
+            OnRightForce?.Invoke(this, EventArgs.Empty);
         }
     }
 
