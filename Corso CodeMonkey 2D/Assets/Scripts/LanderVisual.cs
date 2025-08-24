@@ -15,7 +15,15 @@ public class LanderVisual : MonoBehaviour
         lander.OnLeftForce += Lander_OnLeftForce;
         lander.OnRightForce += Lander_OnRightForce;
         lander.OnBeforeForce += Lander_OnBeforeForce; // Questo evento serve per far si che quando non stiamo schiacciando nessun tasto, la navicella non spara nessuna particella. Senza di questo, se schiacciassimo il tasto Su rimarebbe fisso quell'evento in cui tutte le particelle sono attive e non si spegnerebbero mai.
+        lander.OnFuelEmpty += Lander_OnFuelEmpty;
+
         // Ovviamente vogliamo far si che all'inizio le particelle non siano attive, bensì che si attivino solo se certi eventi sono soddisfatti o meno.
+        SetEnabledThrusterParticleSystem(leftThrusterParticleSystem, false);
+        SetEnabledThrusterParticleSystem(middleThrusterParticleSystem, false);
+        SetEnabledThrusterParticleSystem(rightThrusterParticleSystem, false);
+    }
+
+    private void Lander_OnFuelEmpty(object sender, System.EventArgs e) {
         SetEnabledThrusterParticleSystem(leftThrusterParticleSystem, false);
         SetEnabledThrusterParticleSystem(middleThrusterParticleSystem, false);
         SetEnabledThrusterParticleSystem(rightThrusterParticleSystem, false);
@@ -39,9 +47,7 @@ public class LanderVisual : MonoBehaviour
         SetEnabledThrusterParticleSystem(leftThrusterParticleSystem, true);
         SetEnabledThrusterParticleSystem(middleThrusterParticleSystem, true);
         SetEnabledThrusterParticleSystem(rightThrusterParticleSystem, true);
-        return;
     }
-
 
     private void SetEnabledThrusterParticleSystem(ParticleSystem particleSystem, bool enabled) { // Questa funzione serve per stabilire se quelle particelle, in base ad un certo evento, vogliamo che siano attive o meno.
         ParticleSystem.EmissionModule emissionModule = particleSystem.emission;
