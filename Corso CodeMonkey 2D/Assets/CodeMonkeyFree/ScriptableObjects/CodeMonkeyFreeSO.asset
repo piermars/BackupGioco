@@ -14,48 +14,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentVersion: 1.00
   subtype: lunarLanderFree
-  lastShownTimestamp: 1756044618
+  lastShownTimestamp: 1759686495
   lastUpdateResponse:
     version: 1.00
     versionUrl: https://unitycodemonkey.com
-  checkedLastUpdateTimestamp: 1756044618
+  checkedLastUpdateTimestamp: 1759686496
   lastQOTDResponse:
-    questionId: 214
-    questionText: 'What is the position of the transform after running this code?
-
-      <p>Vector3
-      targetPosition = new Vector3(10, 0, 0);</p>
-
-      <p>transform.position =
-      targetPosition;</p>
-
-      <p>targetPosition.x = 20;</p>'
-    answerA: (10, 0, 0)
-    answerB: (20, 0, 0)
-    answerC: Unknown
+    questionId: 228
+    questionText: What does Normalizing a Vector do?
+    answerA: Modifies its x,y,z to get a magnitude of 1
+    answerB: Invert its x,y,z
+    answerC: Flatten the z
     answerD: 
     answerE: 
-  lastQotdTimestamp: 1756044618
+  lastQotdTimestamp: 1759686496
   lastDynamicHeaderResponse:
-    topImageUrl: https://codemonkeyexternal.blob.core.windows.net/external/Misc/summer2025CodeMonkeyBundle_EndsTomorrow.png
-    topText: All my Courses (and Games) in one Bundle! DEEP DISCOUNT ENDS TOMORROW!
-    topLink: summer2025bundle
-    bottomText: Get my Code Monkey Toolkit and make games BETTER and FASTER! 50%
-      OFF right now!
-    bottomLink: toolkit
-  lastDynamicHeaderTimestamp: 1756044618
+    topImageUrl: https://codemonkeyexternal.blob.core.windows.net/external/Misc/humbleSep25Synty.png
+    topText: After 1 year there's a new Synty Humble Bundle! DON'T MISS IT!
+    topLink: humblebundle
+    bottomText: My 10+ Years of C# Knowledge in 1 Course!
+    bottomLink: csharpcourse
+  lastDynamicHeaderTimestamp: 1759686496
   websiteLatestMessage:
     text: <a href="https://cmonkey.co/freecourses">Check out all my FREE courses!
       Click here!</a>
-  websiteLatestMessageTimestamp: 1756044618
+  websiteLatestMessageTimestamp: 1759686496
   websiteLatestVideos:
     videos:
-    - youTubeId: YCvh88Hg5m8
-      title: TOP 8 QUICK Tips on Game Programming!
-    - youTubeId: Lgmv7PYKka8
-      title: Does this AI FINALLY replace Game Devs? Should YOU worry?
-    - youTubeId: x4BTbeKinSI
-      title: TOP 10 FREE NEW Assets AUGUST 2025!
-    - youTubeId: HZ48JOAf-Ko
-      title: Did I STOP making TUTORIALS?
-  websiteLatestVideosTimestamp: 1756044618
+    - youTubeId: Q59s-VS684o
+      title: MASSIVE Unity Security Vulnerability! (but also nothing to worry about)
+    - youTubeId: vhflNElicXU
+      title: Optimization is awesome, but do NOT make this mistake!
+    - youTubeId: _UadeZn6kI8
+      title: Should you use UI Toolkit or Unity UI?
+    - youTubeId: E7OBm60vUCY
+      title: BEST NEW Visual Assets to INSPIRE YOU!
+  websiteLatestVideosTimestamp: 1759686496
